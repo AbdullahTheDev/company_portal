@@ -21,13 +21,18 @@ class PageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-            'slug' => 'required|unique:pages',
+            'name' => 'required',
+            'content' => 'required'
         ]);
 
-        Page::create($request->all());
-        return redirect()->route('pages.index');
+        $slug = \Str::slug($request->name) . '-' . time();
+        Page::create([
+            'name' => $request->name,
+            'content' => $request->content,
+            'slug' => $slug,
+        ]);
+
+        return redirect()->route('admin.pages.index');
     }
 
     public function edit(Page $page)
@@ -50,6 +55,11 @@ class PageController extends Controller
     public function destroy(Page $page)
     {
         $page->delete();
-        return redirect()->route('pages.index');
+        return redirect()->route('admin.pages.index');
+    }
+
+    public function viewPage($slug){
+        $page = Page::where('slug', $slug)->first();
+        return view('pages.view', compact('page'));
     }
 }

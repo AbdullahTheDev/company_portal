@@ -10,6 +10,8 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
+                            <div id="summernote"><p>Hello Summernote</p></div>
+
                             <h4 class="card-title">All Pages</h4>
                             <table class="table table-bordered" id="myTable">
                                 <thead>
@@ -28,7 +30,7 @@
                                             <td> {{ \Carbon\Carbon::parse($page->created_at)->format('M j, Y | h:i A') }} </td>
                                             <td>
                                                 <a 
-                                                {{-- href="{{ route('user.pages.view', $page->slug) }}" --}}
+                                                href="{{ route('user.pages.view', $page->slug) }}"
                                                 >View</a></td>
                                                 <a href="{{ route('admin.pages.edit', $page->id) }}">Edit</a>
                                         </tr>
@@ -43,6 +45,7 @@
     </div>
 @endsection
 @section('script')
+
     <script>
         let table = new DataTable('#myTable');
     </script>

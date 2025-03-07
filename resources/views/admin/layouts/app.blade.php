@@ -28,51 +28,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     {{-- jQuery --}}
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/jquery.min.js') }}"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     {{-- Datatables --}}
     <link href="{{ asset('assets/js/datatables.min.css') }}" rel="stylesheet">
     <script src="{{ asset('assets/js/datatables.min.js') }}"></script>
 
-    {{-- FancyBox --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css"
-        integrity="sha512-nNlU0WK2QfKsuEmdcTwkeh+lhGs6uyOxuUs+n+0oXSYDok5qy0EI0lt01ZynHq6+p/tbgpZ7P+yUb+r71wqdXg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"
-        integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
 
-    <style>
-        /* Custom styles for the Google Translate widget */
-        #google_translate_element {
-            display: inline-block;
-            margin-top: 20px;
-            /* Add your custom styles here */
-        }
-
-        .goog-te-combo {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-        }
-
-        .goog-logo-link {
-            display: none !important;
-        }
-
-        .goog-te-gadget {
-            color: transparent !important;
-        }
-
-        body {
-            top: 0 !important;
-        }
-
-        #google_translate_element a {
-            display: none;
-        }
-    </style>
 
     @yield('style')
 </head>
@@ -115,6 +80,7 @@
     <!-- Custom js for this page -->
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <!-- End custom js for this page -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -146,3 +112,4 @@
 </body>
 
 </html>
+   
