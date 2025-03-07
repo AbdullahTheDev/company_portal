@@ -14,4 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Http\Controllers\PageController;
 
-Route::resource('pages', PageController::class);
+// Route::resource('pages', PageController::class);
+
+
+Route::prefix('Admin')->group(function () {
+    Route::resource('pages', PageController::class);
+});
