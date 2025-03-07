@@ -59,7 +59,17 @@
             color: blue;
             text-decoration: underline;
         }
-    </style>
+
+        .form-class {
+            width: 50%;
+            margin: auto;
+        }
+
+        @media (max-width: 777px) {
+            .form-class {
+                width: 80%;
+            }
+        }
     </style>
 </head>
 <div class="container py-5">
@@ -81,36 +91,46 @@
 
 
     <div class="py-5 mt-2">
-        <h2 class="thank-you">AGREEMENT CONSENT</h2>
+        <h2 class="thank-you mb-5">AGREEMENT CONSENT</h2>
 
 
-        <form class="mt-4">
+        <form class="mt-4 form-class">
             <div class="row">
                 <div class="col-md-6 text-center">
-                    <label class="form-label">Zach O’Connor</label>
+                    <div style="border-bottom: 1px solid #000;">
+                        <label class="form-label">Zach O’Connor</label>
+                    </div>
                     <p>Manager Compliance</p>
                 </div>
                 <div class="col-md-6 text-center">
-                    <label class="form-label">Client Name</label>
-                    <input type="text" class="form-control text-center" placeholder="Enter Client Name" required>
+                    <div style="border-bottom: 1px solid #000;">
+                        <input type="text" class="text-center form-label" style="border: none;"
+                            placeholder="Enter Client Name" required>
+                    </div>
+                    <p>Client Name</p>
                 </div>
             </div>
 
             <div class="row mt-4">
                 <div class="col-md-6 text-center">
-                    <label class="form-label">Signature</label>
-                    <p class="signature-box">Zach O’Connor</p>
+                    <div style="border-bottom: 1px solid #000;">
+                        <label class="form-label">Signature</label>
+                    </div>
+                    <p>Zach O’Connor</p>
                 </div>
                 <div class="col-md-6 text-center">
                     <label class="form-label">Signature</label>
-                    <canvas id="signatureCanvas" class="signature-box"></canvas>
-                    <button type="button" class="btn btn-danger mt-2" onclick="clearCanvas()">Clear</button>
+                    <canvas id="signatureCanvas" width="300" height="150" style="border: 3px solid #e67e22;"></canvas>
+                    <button id="clearCanvas" class="btn btn-sm btn-secondary">Clear</button>
+                    <input type="hidden" name="signature" id="signatureInput">
+
+
                 </div>
             </div>
 
             <div class="text-center mt-4">
                 <label class="form-label">Date:</label>
-                <span class="fw-bold">9<sup>th</sup> January 2025</span>
+                <span class="fw-bold">{{ now()->format('jS F Y') }}</span>
             </div>
 
             <h2 class="thank-you">THANK YOU</h2>
@@ -130,33 +150,46 @@
 
 </div>
 
-
 <script>
-    let canvas = document.getElementById('signatureCanvas');
-    let ctx = canvas.getContext('2d');
-    let drawing = false;
+    document.addEventListener("DOMContentLoaded", function () {
+        let canvas = document.getElementById("signatureCanvas");
+        let ctx = canvas.getContext("2d");
+        let drawing = false;
 
-    canvas.addEventListener('mousedown', () => drawing = true);
-    canvas.addEventListener('mouseup', () => {
-        drawing = false;
-        ctx.beginPath();
+        function startDrawing(e) {
+            drawing = true;
+            ctx.beginPath();
+            ctx.moveTo(e.offsetX, e.offsetY);
+        }
+
+        function draw(e) {
+            if (!drawing) return;
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+        }
+
+        function stopDrawing() {
+            drawing = false;
+            saveSignature();
+        }
+
+        function saveSignature() {
+            let signatureData = canvas.toDataURL("image/png");
+            document.getElementById("signatureInput").value = signatureData;
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            document.getElementById("signatureInput").value = "";
+        }
+
+        canvas.addEventListener("mousedown", startDrawing);
+        canvas.addEventListener("mousemove", draw);
+        canvas.addEventListener("mouseup", stopDrawing);
+        canvas.addEventListener("mouseleave", stopDrawing);
+
+        document.getElementById("clearCanvas").addEventListener("click", clearCanvas);
     });
-    canvas.addEventListener('mousemove', draw);
-
-    function draw(event) {
-        if (!drawing) return;
-        ctx.lineWidth = 2;
-        ctx.lineCap = 'round';
-        ctx.strokeStyle = 'black';
-        ctx.lineTo(event.offsetX, event.offsetY);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(event.offsetX, event.offsetY);
-    }
-
-    function clearCanvas() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
 </script>
 
 </html>
