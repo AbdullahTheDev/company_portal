@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +19,6 @@ use App\Http\Controllers\PageController;
 
 
 Route::prefix('Admin')->group(function () {
-    Route::resource('pages', PageController::class);
+    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::resource('pages', PageController::class)->names('admin.pages');
 });
