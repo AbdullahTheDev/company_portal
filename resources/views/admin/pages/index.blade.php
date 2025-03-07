@@ -29,10 +29,9 @@
                                             <td> {{ $page->title }} </td>
                                             <td> {{ \Carbon\Carbon::parse($page->created_at)->format('M j, Y | h:i A') }} </td>
                                             <td>
-                                                <a 
-                                                href="{{ route('user.pages.view', $page->slug) }}"
-                                                >View</a></td>
+                                                <a href="{{ route('user.pages.view', $page->slug) }}">View</a>
                                                 <a href="{{ route('admin.pages.edit', $page->id) }}">Edit</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

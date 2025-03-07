@@ -16,7 +16,9 @@
                         EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"></span><strong style="color: var(--bs-body-color); font-size: 1rem; text-align: var(--bs-body-text-align);"><span style="font-size:18.0pt;font-family:
                         &quot;Calibri&quot;,sans-serif;mso-fareast-font-family:Calibri;mso-ansi-language:EN-US;
                         mso-fareast-language:EN-US;mso-bidi-language:AR-SA;font-weight:normal">{{ $page->name }},</span></strong></p>
-                    {!! $page->content !!}
+                    {!! $page->content_1 !!}
+                    {!! $page->content_2 !!}
+                    {!! $page->content_3 !!}
                 </div>
             </div>
         </div>

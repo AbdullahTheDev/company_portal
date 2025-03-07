@@ -22,13 +22,17 @@ class PageController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'content' => 'required'
+            'content_1' => 'required',
+            'content_2' => 'required',
+            'content_3' => 'required',
         ]);
 
         $slug = \Str::slug($request->name) . '-' . time();
         Page::create([
             'name' => $request->name,
-            'content' => $request->content,
+            'content_1' => $request->content_1,
+            'content_2' => $request->content_2,
+            'content_3' => $request->content_3,
             'slug' => $slug,
         ]);
 
@@ -37,19 +41,20 @@ class PageController extends Controller
 
     public function edit(Page $page)
     {
-        return view('pages.edit', compact('page'));
+        return view('admin.pages.edit', compact('page'));
     }
 
     public function update(Request $request, Page $page)
     {
         $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-            'slug' => 'required|unique:pages,slug,' . $page->id,
+            'name' => 'required',
+            // 'content_1' => 'required',
+            'content_2' => 'required',
+            // 'content_3' => 'required',
         ]);
 
         $page->update($request->all());
-        return redirect()->route('pages.index');
+        return redirect()->route('admin.pages.index');
     }
 
     public function destroy(Page $page)
