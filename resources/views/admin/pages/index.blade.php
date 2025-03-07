@@ -10,8 +10,6 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <div id="summernote"><p>Hello Summernote</p></div>
-
                             <h4 class="card-title">All Pages</h4>
                             <table class="table table-bordered" id="myTable">
                                 <thead>
