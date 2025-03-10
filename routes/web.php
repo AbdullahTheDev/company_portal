@@ -27,4 +27,4 @@ Route::get('agreement/{slug}', [PageController::class, 'viewPage'])->name('user.
 Route::post('agreement/submit', [PageController::class, 'submit'])->name('user.agreement.submit');
 
 
-Route::get('thanks', [PageController::class, 'thanks'])->name('thanks');
+Route::get('thanks/?{id}', [PageController::class, 'thanks'])->name('thanks');

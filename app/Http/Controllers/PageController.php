@@ -77,19 +77,42 @@ class PageController extends Controller
                 'name' => 'required'
             ]);
         try{
-            UserSubmission::create([
+            $submission = UserSubmission::create([
                 'page_id' => $request->page_id,
                 'name' => $request->name,
                 'signature' => $request->signature
             ]);
 
-            return redirect()->route('thanks')->with('success', 'Signature submitted successfully');
+            return redirect()->route('thanks', ['id' => $submission->id])->with('success', 'Signature submitted successfully');
         }catch(Exception $e){
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
-    public function thanks(Request $request){
-        return view('thanks');
+    public function thanks(Request $request, $id){
+        try{
+            $submission = UserSubmission::findOrFail($id);
+            $page = Page::findOrFail($submission->page_id);
+
+
+            return view('thanks', compact('submission', 'page'));
+        }catch(Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function generatePdf($id)
+    {
+        // Fetch data from the database
+        $submission = UserSubmission::findOrFail($id);
+        $page = Page::findOrFail($submission->page_id);
+
+        $data = $page->content_1 . $page->content_2 . $page->content_3; 
+
+        // Load the view and pass the data
+        $pdf = Pdf::loadHTML($data); // Assuming 'html_content' stores the formatted HTML
+
+        // Download the PDF
+        return $pdf->download('document.pdf');
     }
 }

@@ -82,18 +82,10 @@
     </style>
 </head>
 <div class="container py-5">
-    <p>
-        <span
-            style="font-size:18.0pt;font-family:&quot;Calibri&quot;,sans-serif; mso-fareast-font-family:Calibri;color:#E36C0A;mso-themecolor:accent6; mso-themeshade:191;mso-ansi-language:EN-US;mso-fareast-language:EN-US; mso-bidi-language:AR-SA;font-weight:bold;">To&nbsp;</span>
-        <span
-            style="font-size:18.0pt;font-family:
-                            &quot;Calibri&quot;,sans-serif;mso-fareast-font-family:Calibri;color:#EC6F16;mso-ansi-language:
-                            EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"></span><strong
-            style="color: var(--bs-body-color); font-size: 1rem; text-align: var(--bs-body-text-align);"><span
-                style="font-size:18.0pt;font-family:
-                            &quot;Calibri&quot;,sans-serif;mso-fareast-font-family:Calibri;mso-ansi-language:EN-US;
-                            mso-fareast-language:EN-US;mso-bidi-language:AR-SA;font-weight:normal">{{ $page->name }},</span></strong>
-    </p>
+    <h1>
+        <span style="font-family: 'Calibri', sans-serif; font-weight: bold; color: #E36C0A; font-size: 18.0pt;">To</span>
+        <span style="font-family: 'Calibri', sans-serif; font-weight: bold; font-size: 18.0pt;">{{ $page->name }},</span>
+    </h1>
     {!! $page->content_1 !!}
     {!! $page->content_2 !!}
     {!! $page->content_3 !!}
