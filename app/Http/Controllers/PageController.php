@@ -16,9 +16,17 @@ class PageController extends Controller
         return view('admin.pages.index', compact('pages'));
     }
 
-    public function create()
+    public function create(Page $oldPage)
     {
-        return view('admin.pages.create');
+        $page = new Page();
+        $page->content_1 = $oldPage->content_1;
+        $page->content_2 = $oldPage->content_2;
+        $page->content_3 = $oldPage->content_3;
+        $page->name = $oldPage->name;
+        $page->slug = $oldPage->name . time();
+        $page->save();
+
+        return view('admin.pages.edit', compact('page'));
     }
 
     public function store(Request $request)

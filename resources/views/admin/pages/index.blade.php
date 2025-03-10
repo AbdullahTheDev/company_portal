@@ -10,7 +10,10 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">All Pages</h4>
+                            <div>
+                                <h4 class="card-title">All Pages</h4>
+                                <a href="{{ route('admin.pages.create', 1) }}" class="btn btn-primary btn-sm">Create New Page</a>
+                            </div>
                             <table class="table table-bordered" id="myTable">
                                 <thead>
                                     <tr>

@@ -21,6 +21,7 @@ use App\Http\Controllers\PageController;
 Route::prefix('Admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('pages', PageController::class)->names('admin.pages');
+    Route::get('pages/create/{oldPage}', [PageController::class, 'create'])->name('admin.pages.create');
 
 });
 Route::get('agreement/{slug}', [PageController::class, 'viewPage'])->name('user.pages.view');
