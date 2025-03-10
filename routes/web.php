@@ -28,3 +28,4 @@ Route::post('agreement/submit', [PageController::class, 'submit'])->name('user.a
 
 
 Route::get('thanks/?{id}', [PageController::class, 'thanks'])->name('thanks');
+Route::get('download-pdf/{id}', [PageController::class, 'generatePdf'])->name('download-pdf');

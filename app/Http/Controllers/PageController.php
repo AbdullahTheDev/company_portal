@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Models\UserSubmission;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -107,7 +108,11 @@ class PageController extends Controller
         $submission = UserSubmission::findOrFail($id);
         $page = Page::findOrFail($submission->page_id);
 
-        $data = $page->content_1 . $page->content_2 . $page->content_3; 
+        $data = "
+        <h1>
+            <span style=\"font-family: 'Calibri', sans-serif; font-weight: bold; color: #E36C0A; font-size: 18.0pt;\">To</span>
+            <span style=\"font-family: 'Calibri', sans-serif; font-weight: bold; font-size: 18.0pt;\">{{ $page->name }},</span>
+        </h1>" . $page->content_1 . $page->content_2 . $page->content_3; 
 
         // Load the view and pass the data
         $pdf = Pdf::loadHTML($data); // Assuming 'html_content' stores the formatted HTML

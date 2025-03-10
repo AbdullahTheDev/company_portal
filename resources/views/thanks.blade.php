@@ -22,6 +22,8 @@
             <div class="text-center">
                 <h1>Thank You !</h1>
                 <p>Agreement signed sucessfully!</p>
+
+                <a href="{{ route('download-pdf', $submission->id) }}" class="btn btn-secondary">Download Agreement</a>
             </div>
         </div>
 </body>
