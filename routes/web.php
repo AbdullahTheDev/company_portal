@@ -25,3 +25,8 @@ Route::prefix('Admin')->group(function () {
 });
 Route::get('agreement/{slug}', [PageController::class, 'viewPage'])->name('user.pages.view');
 Route::post('agreement/submit', [PageController::class, 'submit'])->name('user.agreement.submit');
+
+
+Route::get('thanks', function() {
+    return view('thanks');
+})->name('thanks');

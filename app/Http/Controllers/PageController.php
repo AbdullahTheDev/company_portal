@@ -83,7 +83,7 @@ class PageController extends Controller
                 'signature' => $request->signature
             ]);
 
-            return redirect()->back()->with('success', 'Signature submitted successfully');
+            return redirect()->route('thanks')->with('success', 'Signature submitted successfully');
         }catch(Exception $e){
             return redirect()->back()->with('error', $e->getMessage());
         }
