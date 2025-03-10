@@ -15,7 +15,7 @@
                                 <thead>
                                     <tr>
                                         <th> # </th>
-                                        <th> Title </th>
+                                        <th> Name </th>
                                         <th> Created At </th>
                                         <th> Actions </th>
                                     </tr>
@@ -24,11 +24,14 @@
                                     @foreach ($pages as $key => $page)
                                         <tr>
                                             <td> {{ $key + 1 }} </td>
-                                            <td> {{ $page->title }} </td>
+                                            <td> {{ $page->name }} </td>
                                             <td> {{ \Carbon\Carbon::parse($page->created_at)->format('M j, Y | h:i A') }} </td>
                                             <td>
-                                                <a href="{{ route('user.pages.view', $page->slug) }}">View</a>
-                                                <a href="{{ route('admin.pages.edit', $page->id) }}">Edit</a>
+                                                <a href="{{ route('user.pages.view', $page->slug) }}" class="btn btn-primary btn-sm">View</a>
+                                                <a href="{{ route('admin.pages.edit', $page->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                @if($page->submission_id != null)
+                                                    <a href="{{ route('download-pdf', $page->submission_id) }}" class="btn btn-primary btn-sm">Download PDF</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

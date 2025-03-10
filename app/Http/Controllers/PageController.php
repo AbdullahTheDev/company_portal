@@ -83,6 +83,8 @@ class PageController extends Controller
                 'name' => $request->name,
                 'signature' => $request->signature
             ]);
+            Page::findOrFail($request->page_id)->submission_id = $submission->id;
+            Page::findOrFail($request->page_id)->save();
 
             return redirect()->route('thanks', ['id' => $submission->id])->with('success', 'Signature submitted successfully');
         }catch(Exception $e){
