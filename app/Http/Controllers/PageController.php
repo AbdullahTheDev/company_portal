@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\UserSubmission;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -76,10 +77,13 @@ class PageController extends Controller
                 'name' => 'required'
             ]);
         try{
+            UserSubmission::create([
+                'page_id' => $request->page_id,
+                'name' => $request->name,
+                'signature' => $request->signature
+            ]);
 
-            
-
-            return $request->all();
+            return redirect()->back()->with('success', 'Signature submitted successfully');
         }catch(Exception $e){
             return redirect()->back()->with('error', $e->getMessage());
         }
