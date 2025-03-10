@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use Exception;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -66,5 +67,20 @@ class PageController extends Controller
     public function viewPage($slug){
         $page = Page::where('slug', $slug)->first();
         return view('pages.view', compact('page'));
+    }
+
+
+    public function submit(Request $request){
+        $request->validate([
+            'signature' => 'reguired',
+            'name' => 'required'
+        ]);
+        try{
+
+
+            return $request->all();
+        }catch(Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }
