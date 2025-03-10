@@ -22,5 +22,6 @@ Route::prefix('Admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('pages', PageController::class)->names('admin.pages');
 
-    Route::get('agreement/{slug}', [PageController::class, 'viewPage'])->name('user.pages.view');
 });
+Route::get('agreement/{slug}', [PageController::class, 'viewPage'])->name('user.pages.view');
+Route::post('agreement/submit', [PageController::class, 'submit'])->name('user.agreement.submit');

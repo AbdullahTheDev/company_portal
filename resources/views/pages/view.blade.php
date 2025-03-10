@@ -89,12 +89,11 @@
     {!! $page->content_2 !!}
     {!! $page->content_3 !!}
 
-
     <div class="py-5 mt-2">
         <h2 class="thank-you mb-5">AGREEMENT CONSENT</h2>
-
-
-        <form class="mt-4 form-class">
+        <form method="POST" action="{{ route('user.agreement.submit') }}" class="mt-4 form-class">
+            @csrf
+            <input type="hidden" name="page_id" value="{{ $page->id }}">
             <div class="row">
                 <div class="col-md-6 text-center">
                     <div style="border-bottom: 1px solid #000;">
@@ -110,7 +109,6 @@
                     <p>Client Name</p>
                 </div>
             </div>
-
             <div class="row mt-4">
                 <div class="col-md-6 text-center">
                     <div style="border-bottom: 1px solid #000;">
@@ -123,19 +121,14 @@
                     <canvas id="signatureCanvas" width="300" height="150" style="border: 3px solid #e67e22;"></canvas>
                     <button id="clearCanvas" class="btn btn-sm btn-secondary">Clear</button>
                     <input type="hidden" name="signature" id="signatureInput">
-
-
                 </div>
             </div>
-
             <div class="text-center mt-4">
                 <label class="form-label">Date:</label>
                 <span class="fw-bold">{{ now()->format('jS F Y') }}</span>
             </div>
-
             <h2 class="thank-you">THANK YOU</h2>
         </form>
-
         <div class="text-center mt-3">
             <p>Phone: (713) 936-5277</p>
             <p><a href="#" class="footer-text">Head Office: 2121 Huffines Blvd, Carrollton, TX 75010, USA</a></p>
@@ -144,10 +137,7 @@
             </p>
             <p><a href="#" class="footer-text">*terms & conditions</a></p>
         </div>
-
     </div>
-
-
 </div>
 
 <script>
