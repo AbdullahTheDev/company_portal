@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <style>
         <style>body {
@@ -35,7 +37,14 @@
             font-weight: bold;
             text-align: center;
         }
-
+        .form-btn{
+            background-color: #E67E22;
+            color: #fff;
+        }
+        .form-btn:hover{
+            background-color: #d35400;
+            color: #fff;
+        }
         .thank-you {
             color: #E67E22;
             font-size: 40px;
@@ -119,13 +128,16 @@
                 <div class="col-md-6 text-center">
                     <label class="form-label">Signature</label>
                     <canvas id="signatureCanvas" width="300" height="150" style="border: 3px solid #e67e22;"></canvas>
-                    <button id="clearCanvas" class="btn btn-sm btn-secondary">Clear</button>
+                    <button id="clearCanvas" type="button" class="btn btn-sm btn-secondary">Clear</button>
                     <input type="hidden" name="signature" id="signatureInput">
                 </div>
             </div>
             <div class="text-center mt-4">
                 <label class="form-label">Date:</label>
                 <span class="fw-bold">{{ now()->format('jS F Y') }}</span>
+            </div>
+            <div class="my-2 text-center">
+                <button type="submit" class="btn mx-auto form-btn">Submit</button>
             </div>
             <h2 class="thank-you">THANK YOU</h2>
         </form>
@@ -139,6 +151,13 @@
         </div>
     </div>
 </div>
+
+
+    <!-- jQuery (Required for Toastr) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -179,6 +198,33 @@
         canvas.addEventListener("mouseleave", stopDrawing);
 
         document.getElementById("clearCanvas").addEventListener("click", clearCanvas);
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        @if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+
+        @if (session('warning'))
+            toastr.warning("{{ session('warning') }}");
+        @endif
+
+        @if (session('info'))
+            toastr.info("{{ session('info') }}");
+        @endif
+
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error("{{ $error }}");
+            @endforeach
+        @endif
     });
 </script>
 

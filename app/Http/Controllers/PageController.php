@@ -71,10 +71,10 @@ class PageController extends Controller
 
 
     public function submit(Request $request){
-        $request->validate([
-            'signature' => 'reguired',
-            'name' => 'required'
-        ]);
+            $request->validate([
+                'signature' => 'required',
+                'name' => 'required'
+            ]);
         try{
 
 
