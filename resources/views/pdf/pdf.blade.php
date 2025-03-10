@@ -84,13 +84,22 @@
         }
 
         .row {
-            display: flex;
             width: 100%;
+            height: 120px;
+            overflow: hidden;
         }
 
-        .col-md-6 {
+        .col-6 {
             width: 50%;
-            padding: 10px;
+            float: left;
+            /* Makes them align side by side */
+            text-align: center;
+        }
+
+        .col-7 {
+            width: 50%;
+            float: right;
+            /* Makes them align side by side */
             text-align: center;
         }
 
@@ -120,7 +129,8 @@
             display: block;
             margin: 10px auto;
         }
-        .text-center{
+
+        .text-center {
             text-align: center;
         }
     </style>
@@ -138,13 +148,13 @@
 <div class="py-5 mt-2">
     <h2 class="thank-you mb-5">AGREEMENT CONSENT</h2>
     <div class="row">
-        <div class="text-center">
+        <div class="col-6">
             <div class="border-bottom">
                 <label class="form-label">Zach O’Connor</label>
             </div>
             <p>Manager Compliance</p>
         </div>
-        <div class="text-center">
+        <div class="col-7">
             <div class="border-bottom">
                 <span>{{ $submission->name }}</span>
             </div>
@@ -152,20 +162,22 @@
         </div>
     </div>
 
-    <div class="row mt-4">
-        <div class="text-center">
+    <div class="row">
+        <div class="col-6">
             <div class="border-bottom">
                 <label class="form-label">Signature</label>
             </div>
-            <img width="200px" src="{{ public_path('assets/images/our-signature.png')}}" alt="">
+            <img width="200px" src="{{ public_path('assets/images/our-signature.png') }}" alt="">
         </div>
-        <div class="text-center">
-            <label class="form-label">Signature</label>
-            <img src="{{ $submission->signature }}" alt="">
+        <div class="col-7">
+            <div class="border-bottom">
+                <label class="form-label">Signature</label>
+            </div>
+            <img width="200px" src="{{ $submission->signature }}" alt="">
         </div>
     </div>
 
-    <div class="text-center mt-4">
+    <div class="text-center">
         <label class="form-label">Date:</label>
         <span class="fw-bold">{{ $submission->created_at->format('jS F Y') }}</span>
     </div>
