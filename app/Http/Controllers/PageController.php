@@ -88,4 +88,8 @@ class PageController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
+    public function thanks(Request $request){
+        return view('thanks');
+    }
 }
