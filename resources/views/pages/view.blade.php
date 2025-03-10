@@ -112,7 +112,7 @@
                 </div>
                 <div class="col-md-6 text-center">
                     <div style="border-bottom: 1px solid #000;">
-                        <input type="text" class="text-center form-label" style="border: none;"
+                        <input type="text" name="name" class="text-center form-label" style="border: none;"
                             placeholder="Enter Client Name" required>
                     </div>
                     <p>Client Name</p>

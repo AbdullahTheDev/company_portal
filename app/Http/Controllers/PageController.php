@@ -77,6 +77,7 @@ class PageController extends Controller
             ]);
         try{
 
+            
 
             return $request->all();
         }catch(Exception $e){
