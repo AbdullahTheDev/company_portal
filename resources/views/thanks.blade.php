@@ -23,6 +23,7 @@
                 <h1>Thank You !</h1>
                 <p>Agreement signed sucessfully!</p>
 
+                <img src="{{ $submission->signature }}" alt="">
                 <a href="{{ route('download-pdf', $submission->id) }}" class="btn btn-secondary">Download Agreement</a>
             </div>
         </div>

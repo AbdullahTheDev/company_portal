@@ -107,14 +107,9 @@ class PageController extends Controller
         $submission = UserSubmission::findOrFail($id);
         $page = Page::findOrFail($submission->page_id);
 
-        $data = "
-        <h1>
-            <span style=\"font-family: 'Calibri', sans-serif; font-weight: bold; color: #E36C0A; font-size: 18.0pt;\">To</span>
-            <span style=\"font-family: 'Calibri', sans-serif; font-weight: bold; font-size: 18.0pt;\">$page->name,</span>
-        </h1>" . $page->content_1 . $page->content_2 . $page->content_3; 
+        $pdf = Pdf::loadView('pdf.pdf', compact('submission', 'page'));
 
-        // Load the view and pass the data
-        $pdf = Pdf::loadHTML($data); // Assuming 'html_content' stores the formatted HTML
+        // $pdf = Pdf::loadHTML($data); // Assuming 'html_content' stores the formatted HTML
 
         // Download the PDF
         return $pdf->download('document.pdf');

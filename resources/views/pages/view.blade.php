@@ -115,7 +115,7 @@
                     <div style="border-bottom: 1px solid #000;">
                         <label class="form-label">Signature</label>
                     </div>
-                    <p>Zach O’Connor</p>
+                    <img width="200px" src="{{ asset('assets/images/our-signature.png')}}" alt="">
                 </div>
                 <div class="col-md-6 text-center">
                     <label class="form-label">Signature</label>
