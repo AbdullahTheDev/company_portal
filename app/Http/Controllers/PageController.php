@@ -22,15 +22,15 @@ class PageController extends Controller
         $page->content_1 = $oldPage->content_1;
         $page->content_2 = $oldPage->content_2;
         $page->content_3 = $oldPage->content_3;
-        $page->name = $oldPage->name;
-        $page->slug = $oldPage->name . time();
+        $page->name = $oldPage->name; 
+        $page->slug = \Str::slug($oldPage->name . '-' . time());
         $page->save();
 
         return view('admin.pages.edit', compact('page'));
     }
 
     public function store(Request $request)
-    {
+    { 
         $request->validate([
             'name' => 'required',
             'content_1' => 'required',
